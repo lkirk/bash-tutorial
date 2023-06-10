@@ -1,0 +1,65 @@
+#!/bin/bash
+
+A=wef
+
+echo 'my friends name is $A'
+echo "my friends name is $A"
+echo my friends name is $A
+
+B='wef bla'
+
+ls $B
+ls '$B'
+ls "$B"
+
+echo '~'
+echo "~"
+echo ~
+echo ~root
+echo ~lkirk
+
+echo "you gave me the argument" "$@"
+
+for a in "$@"
+do
+    echo "$a"
+done
+
+if [[ "$a" == "b" ]]
+then
+    echo hi
+fi
+
+echo 'what is the answer to 1+2?'
+echo "$((1+2))"
+echo 'what is the answer to 1*2?'
+echo "$((1*2))"
+echo 'what is the answer to 1/2?'
+echo "$((1/2))"
+
+
+# echo LOOK WHAT IS IN STDIN
+# cat /dev/stdin
+
+# ignoring errors
+ls -la filethatdoesnotexist 2> /dev/null
+
+# save output to a file
+ls -la > some_output.txt
+
+# pipe a few commands together
+ls -la | grep wef > some_output.txt
+
+# how many files with the ending pizza?
+find | grep pizza | wc -l
+
+PIZZA_FILES="$(find | grep pizza | wc -l)"
+echo "$PIZZA_FILES"
+
+# you can replace the output of commands anywhere
+echo "$(find | grep pizza | wc -l)""$(find | grep pizza)"A"$(find | grep pizza | wc -l)"
+
+# sometimes people use ``
+echo `find | grep pizza`
+
+echo "$(ls $(find | grep pizza))"
